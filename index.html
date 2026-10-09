@@ -1,0 +1,941 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Máhria 💜</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --night: #0c0718;
+    --purple: #a855f7;
+    --lavender: #e9d5ff;
+    --pink: #f9a8d4;
+    --white: #fff8ff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    background: var(--night);
+    color: var(--white);
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+button { font: inherit; }
+
+button, a { -webkit-tap-highlight-color: transparent; }
+
+#stars {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: sparkle 3s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: .2; transform: scale(.8); }
+    50% { opacity: 1; transform: scale(1.5); }
+}
+
+.aurora {
+    position: fixed;
+    width: 65vw;
+    height: 65vw;
+    border-radius: 50%;
+    background: #7e22ce;
+    filter: blur(130px);
+    opacity: .12;
+    top: -35vw;
+    left: 15%;
+    pointer-events: none;
+}
+
+#intro {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+    background:
+        radial-gradient(ellipse at 50% 40%, #43216c 0%, #190e2b 45%, #080611 100%);
+    transition: opacity .8s, visibility .8s;
+}
+
+#intro.closed {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.intro-card { max-width: 600px; }
+
+.intro-symbol {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 35px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #e9d5ff66;
+    border-radius: 50%;
+    font-size: 50px;
+    box-shadow: 0 0 70px #a855f744, inset 0 0 35px #a855f722;
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+.eyebrow {
+    color: var(--pink);
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
+
+h1, h2, .letter-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+}
+
+.intro-card h1 {
+    font-size: clamp(44px, 9vw, 75px);
+    line-height: 1;
+    margin-bottom: 22px;
+    background: linear-gradient(110deg, #fff, #e9d5ff, #f9a8d4);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.intro-card p {
+    color: #d8c6ef;
+    font-size: 14px;
+    line-height: 1.9;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    padding: 14px 25px;
+    color: white;
+    border: 1px solid #ffffff30;
+    border-radius: 50px;
+    background: linear-gradient(110deg, #7c3aed, #c026d3);
+    box-shadow: 0 8px 35px #a855f744;
+    cursor: pointer;
+    transition: transform .25s, box-shadow .25s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px #a855f766;
+}
+
+.btn:focus-visible, .member:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 4px;
+}
+
+main, nav, footer { position: relative; z-index: 1; }
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 22px 7%;
+    border-bottom: 1px solid #ffffff12;
+}
+
+.logo {
+    font-weight: 700;
+    letter-spacing: 3px;
+    font-size: 13px;
+    color: var(--lavender);
+}
+
+.nav-note { color: #c9b6df; font-size: 11px; }
+
+.hero {
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 90px 24px 75px;
+}
+
+.moon {
+    font-size: 65px;
+    margin-bottom: 28px;
+    filter: drop-shadow(0 0 30px #d8b4fe88);
+    animation: float 5s ease-in-out infinite;
+}
+
+.hero h1 {
+    max-width: 900px;
+    font-size: clamp(48px, 9vw, 96px);
+    line-height: .98;
+    background: linear-gradient(110deg, #fff, #e9d5ff 55%, #f9a8d4);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero p {
+    max-width: 600px;
+    color: #d8c9e9;
+    line-height: 2;
+    margin: 26px auto 30px;
+    font-size: 14px;
+}
+
+.hero .small-note {
+    color: #a997c2;
+    letter-spacing: 3px;
+    font-size: 10px;
+    margin-top: 45px;
+}
+
+section { padding: 85px 7%; }
+
+.section-heading {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 45px;
+}
+
+.section-heading h2 {
+    font-size: clamp(37px, 6vw, 60px);
+    line-height: 1.05;
+    margin-bottom: 15px;
+}
+
+.section-heading p {
+    font-size: 13px;
+    color: #c9b8df;
+    line-height: 1.9;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    max-width: 1150px;
+    margin: auto;
+}
+
+.member {
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #ffffff1c;
+    border-radius: 18px;
+    background: #1b112c;
+    text-align: left;
+    color: white;
+    cursor: pointer;
+    transition: transform .3s, border-color .3s, box-shadow .3s;
+}
+
+.member:hover {
+    transform: translateY(-7px);
+    border-color: #d8b4fe99;
+    box-shadow: 0 12px 35px #00000044;
+}
+
+.member img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center top;
+    background: #29203b;
+    transition: transform .5s;
+}
+
+.member:hover img { transform: scale(1.04); }
+
+.member-caption { padding: 17px; }
+
+.member-caption span {
+    color: var(--pink);
+    letter-spacing: 2px;
+    font-size: 9px;
+}
+
+.member-caption h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 27px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.member-caption p {
+    color: #b9a7cf;
+    font-size: 10px;
+    line-height: 1.7;
+    margin-top: 5px;
+}
+
+.photo-note {
+    text-align: center;
+    font-size: 10px;
+    color: #a997c2;
+    line-height: 1.8;
+    margin: 22px auto 0;
+}
+
+.photo-note a { color: #d8b4fe; }
+
+.reasons {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 17px;
+    max-width: 1050px;
+    margin: auto;
+}
+
+.reason {
+    border: 1px solid #ffffff16;
+    background: linear-gradient(145deg, #ffffff0b, #ffffff03);
+    border-radius: 20px;
+    padding: 26px;
+    transition: transform .25s, border-color .25s;
+}
+
+.reason:hover {
+    transform: translateY(-5px);
+    border-color: #d8b4fe66;
+}
+
+.reason .num {
+    color: var(--pink);
+    letter-spacing: 3px;
+    font-size: 10px;
+}
+
+.reason .emoji { font-size: 27px; display: block; margin: 17px 0 12px; }
+
+.reason h3 {
+    color: #f2ddff;
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+.reason p {
+    color: #c9b8df;
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+.letter-area { max-width: 800px; margin: auto; text-align: center; }
+
+.envelope {
+    width: 125px;
+    height: 100px;
+    margin: 35px auto 25px;
+    position: relative;
+    display: grid;
+    place-items: center;
+    font-size: 47px;
+    background: #5b2686;
+    border-radius: 12px;
+    box-shadow: 0 0 40px #a855f733;
+    animation: float 4s ease-in-out infinite;
+}
+
+.letter {
+    display: none;
+    text-align: left;
+    margin: 30px auto 0;
+    padding: clamp(24px, 6vw, 48px);
+    border-radius: 22px;
+    border: 1px solid #e9d5ff44;
+    background: linear-gradient(145deg, #2c1944ee, #170e28f5);
+    box-shadow: 0 20px 70px #00000033;
+}
+
+.letter.open { display: block; animation: reveal .8s ease both; }
+
+@keyframes reveal {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.letter h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 37px;
+    color: var(--pink);
+    margin-bottom: 24px;
+}
+
+.letter p {
+    color: #f0e5fa;
+    font-size: 13px;
+    line-height: 2.1;
+    margin-bottom: 17px;
+}
+
+.letter .signature {
+    text-align: right;
+    color: var(--pink);
+    margin-top: 28px;
+    margin-bottom: 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 25px;
+}
+
+.promise {
+    text-align: center;
+    max-width: 850px;
+    margin: auto;
+    padding: 60px 25px;
+    border-top: 1px solid #ffffff16;
+    border-bottom: 1px solid #ffffff16;
+}
+
+.promise h2 {
+    font-size: clamp(38px, 6vw, 58px);
+    margin-bottom: 20px;
+}
+
+.promise p {
+    color: #d1c1e3;
+    font-size: 13px;
+    line-height: 2;
+    max-width: 580px;
+    margin: 0 auto 25px;
+}
+
+#loveMessage {
+    color: var(--pink);
+    min-height: 35px;
+    margin-top: 25px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 27px;
+}
+
+footer {
+    padding: 45px 20px;
+    text-align: center;
+    color: #a997c2;
+    font-size: 11px;
+    line-height: 2;
+}
+
+footer strong { color: var(--lavender); font-weight: 500; }
+
+.heart {
+    position: fixed;
+    z-index: 20;
+    bottom: -45px;
+    pointer-events: none;
+    animation: rise 5s ease-out forwards;
+}
+
+@keyframes rise {
+    0% { opacity: 0; transform: translateY(0) rotate(0); }
+    15% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-110vh) rotate(35deg); }
+}
+
+#photoModal {
+    position: fixed;
+    z-index: 100;
+    inset: 0;
+    background: #080511ee;
+    backdrop-filter: blur(10px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+#photoModal.visible { display: flex; }
+
+.modal-content {
+    max-width: 440px;
+    width: 100%;
+    text-align: center;
+    animation: reveal .35s ease both;
+}
+
+.modal-content img {
+    width: 100%;
+    max-height: 65vh;
+    object-fit: contain;
+    border-radius: 15px;
+}
+
+.modal-content h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    color: var(--lavender);
+    margin: 15px 0;
+}
+
+.close-modal {
+    position: absolute;
+    top: 18px;
+    right: 23px;
+    border: 1px solid #ffffff55;
+    background: #ffffff10;
+    color: white;
+    border-radius: 50%;
+    width: 43px;
+    height: 43px;
+    cursor: pointer;
+    font-size: 23px;
+}
+
+@media (max-width: 850px) {
+    .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .reasons { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 540px) {
+    nav { padding: 18px 5%; }
+    .logo { font-size: 11px; letter-spacing: 2px; }
+    .nav-note { font-size: 9px; }
+    section { padding: 65px 5%; }
+    .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .member-caption { padding: 12px; }
+    .member-caption h3 { font-size: 23px; }
+    .reasons { grid-template-columns: 1fr; }
+    .hero { min-height: 78vh; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+.foto-mahria {
+    width: 250px;
+    height: 250px;
+    margin: 0 auto 25px;
+    border-radius: 60%;
+    overflow: hidden;
+}
+
+.foto-mahria img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 80%;
+}
+</style>
+</head>
+
+<body>
+<div id="stars"></div>
+<div class="aurora"></div>
+
+<!-- PORTADA SORPRESA -->
+<div id="intro">
+    <div class="intro-card">
+        <div class="foto-mahria">
+<img src="./img/mahria.jpeg" alt="Máhria, mi persona favorita">
+```
+
+</div>
+        <div class="eyebrow">Un regalo para una persona única</div>
+        <h1>Hola, Máhria</h1>
+        <p>
+            Preparé un pequeño universo para ti.<br>
+            Tiene un poquito de BTS, muchas estrellas
+            y algo que viene directamente de mi corazón.
+        </p>
+        <button class="btn" onclick="entrar()">
+            Abrir mi regalo ✨
+        </button>
+        <p style="margin-top:25px;font-size:10px;color:#a997c2;">
+            HECHO ESPECIALMENTE PARA TI
+        </p>
+    </div>
+</div>
+
+<!-- VENTANA PARA VER FOTOS GRANDES -->
+<div id="photoModal" role="dialog" aria-modal="true" aria-label="Fotografía de BTS">
+    <button class="close-modal" onclick="cerrarFoto()" aria-label="Cerrar">×</button>
+    <div class="modal-content">
+        <img id="modalImage" src="" alt="">
+        <h3 id="modalName"></h3>
+        <p style="color:#c9b8df;font-size:12px;">Un integrante de tu universo BTS 💜</p>
+    </div>
+</div>
+
+<nav>
+    <div class="logo">MÁHRIA'S UNIVERSE ♡</div>
+    <div class="nav-note">Diseñado con amor · 💜</div>
+</nav>
+
+<main>
+    <header class="hero">
+        <div class="moon">🌙</div>
+        <div class="eyebrow">Para la dueña de mi corazón</div>
+        <h1>En mi universo,<br>tú eres mi estrella.</h1>
+        <p>
+            Máhria, entre millones de estrellas, canciones y galaxias,
+            quería crear un lugar que se pareciera un poquito a ti:
+            bonito, especial y lleno de pequeños detalles.
+            Bienvenida a tu propio universo. 💜
+        </p>
+        <button class="btn" onclick="irA('bts')">
+            Descubre tu universo ↓
+        </button>
+        <div class="small-note">UNA PÁGINA · SIETE ESTRELLAS · UN CARIÑO ENORME</div>
+    </header>
+
+    <!-- LOS SIETE INTEGRANTES -->
+    <section id="bts">
+        <div class="section-heading">
+            <div class="eyebrow">Tu grupo favorito</div>
+            <h2>Las siete estrellas de tu galaxia</h2>
+            <p>
+                Para ti, Máhria: un rinconcito dedicado a los siete
+                integrantes de BTS. Pulsa cada fotografía para verla más grande.
+            </p>
+        </div>
+
+        <div class="gallery">
+            <button class="member" onclick="verFoto('RM','https://bts.ibighit.com/images/profile/proof/member/member-rm.jpg')">
+                <img src="https://bts.ibighit.com/images/profile/proof/member/member-rm.jpg" alt="RM de BTS" loading="lazy">
+                <div class="member-caption">
+                    <span>01 · KIM NAMJOON</span>
+                    <h3>RM</h3>
+                    <p>La mente y el líder de BTS.</p>
+                </div>
+            </button>
+
+            <button class="member" onclick="verFoto('Jin','https://bts.ibighit.com/images/profile/proof/member/member-jin.jpg')">
+                <img src="https://bts.ibighit.com/images/profile/proof/member/member-jin.jpg" alt="Jin de BTS" loading="lazy">
+                <div class="member-caption">
+                    <span>02 · KIM SEOKJIN</span>
+                    <h3>Jin</h3>
+                    <p>Una estrella con luz propia.</p>
+                </div>
+            </button>
+
+            <button class="member" onclick="verFoto('SUGA','https://bts.ibighit.com/images/profile/proof/member/member-suga.jpg')">
+                <img src="https://bts.ibighit.com/images/profile/proof/member/member-suga.jpg" alt="SUGA de BTS" loading="lazy">
+                <div class="member-caption">
+                    <span>03 · MIN YOONGI</span>
+                    <h3>SUGA</h3>
+                    <p>Talento y sensibilidad.</p>
+                </div>
+            </button>
+
+            <button class="member" onclick="verFoto('j-hope','https://bts.ibighit.com/images/profile/proof/member/member-jhope.jpg')">
+                <img src="https://bts.ibighit.com/images/profile/proof/member/member-jhope.jpg" alt="j-hope de BTS" loading="lazy">
+                <div class="member-caption">
+                    <span>04 · JUNG HOSEOK</span>
+                    <h3>j-hope</h3>
+                    <p>Una energía que ilumina.</p>
+                </div>
+            </button>
+
+            <button class="member" onclick="verFoto('Jimin','https://bts.ibighit.com/images/profile/proof/member/member-jimin.jpg')">
+                <img src="https://bts.ibighit.com/images/profile/proof/member/member-jimin.jpg" alt="Jimin de BTS" loading="lazy">
+                <div class="member-caption">
+                    <span>05 · PARK JIMIN</span>
+                    <h3>Jimin</h3>
+                    <p>Arte, elegancia y encanto.</p>
+                    <p>Tu esposo.</p>
+                </div>
+            </button>
+
+            <button class="member" onclick="verFoto('V','https://bts.ibighit.com/images/profile/proof/member/member-v.jpg')">
+                <img src="https://bts.ibighit.com/images/profile/proof/member/member-v.jpg" alt="V de BTS" loading="lazy">
+                <div class="member-caption">
+                    <span>06 · KIM TAEHYUNG</span>
+                    <h3>V</h3>
+                    <p>Una estrella inconfundible.</p>
+                </div>
+            </button>
+
+            <button class="member" onclick="verFoto('Jung Kook','https://bts.ibighit.com/images/profile/proof/member/member-jk.jpg')">
+                <img src="https://bts.ibighit.com/images/profile/proof/member/member-jk.jpg" alt="Jung Kook de BTS" loading="lazy">
+                <div class="member-caption">
+                    <span>07 · JEON JUNGKOOK</span>
+                    <h3>Jung Kook</h3>
+                    <p>Una voz que llega al corazón.</p>
+                </div>
+            </button>
+        </div>
+
+        
+    </section>
+
+    <!-- SIETE DETALLES PARA MÁHRIA -->
+    <section>
+        <div class="section-heading">
+            <div class="eyebrow">Un pequeño homenaje</div>
+            <h2>Siete razones por las que eres especial</h2>
+            <p>
+                Siete es el número de BTS, pero hoy estas siete
+                razones están dedicadas exclusivamente a ti.
+            </p>
+        </div>
+
+        <div class="reasons">
+            <article class="reason">
+                <span class="num">RAZÓN 01</span>
+                <span class="emoji">🌷</span>
+                <h3>Tu sonrisa</h3>
+                <p>Porque tienes esa forma de hacer que un momento sencillo se convierta en uno bonito.</p>
+            </article>
+
+            <article class="reason">
+                <span class="num">RAZÓN 02</span>
+                <span class="emoji">🎶</span>
+                <h3>Tu pasión</h3>
+                <p>Me gusta conocer las cosas que te emocionan y que forman parte de tu mundo, como BTS.</p>
+            </article>
+
+            <article class="reason">
+                <span class="num">RAZÓN 03</span>
+                <span class="emoji">✨</span>
+                <h3>Tu esencia</h3>
+                <p>No necesitas ser otra persona. Lo bonito es que seas tú, con todo lo que te hace única.</p>
+            </article>
+
+            <article class="reason">
+                <span class="num">RAZÓN 04</span>
+                <span class="emoji">🫶</span>
+                <h3>Tu corazón</h3>
+                <p>Me encanta que detrás de esa sonrisa exista una persona con sentimientos, sueños y metas.</p>
+            </article>
+
+            <article class="reason">
+                <span class="num">RAZÓN 05</span>
+                <span class="emoji">🌙</span>
+                <h3>Nuestros momentos</h3>
+                <p>Porque hasta las conversaciones más simples tienen algo especial cuando se trata de nosotros.</p>
+            </article>
+
+            <article class="reason">
+                <span class="num">RAZÓN 06</span>
+                <span class="emoji">🌻</span>
+                <h3>Tu luz</h3>
+                <p>Como un girasol, mereces luz, tranquilidad y días llenos de motivos para sonreír.</p>
+            </article>
+
+            <article class="reason">
+                <span class="num">RAZÓN 07</span>
+                <span class="emoji">💜</span>
+                <h3>Simplemente tú</h3>
+                <p>Entre tantas personas, eres tú quien tiene este lugar especial en mi corazón.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- CARTA PERSONAL -->
+    <section id="carta">
+        <div class="letter-area">
+            <div class="eyebrow">Un mensaje desde mi corazón</div>
+            <h2 style="font-size:clamp(40px,7vw,65px);">Para ti, mi princesa</h2>
+            <p style="color:#c9b8df;font-size:13px;line-height:1.9;margin-top:15px;">
+                Hay cosas que quiero decirte y que merecen un espacio propio.
+            </p>
+
+            <div class="envelope">💌</div>
+
+            <button class="btn" id="letterBtn" onclick="abrirCarta()">
+                Abrir mi carta
+            </button>
+
+            <article class="letter" id="letter">
+                <h3>Mi querida Máhria, 💜</h3>
+
+                <p>
+                    Quería regalarte algo diferente. No solo una carta,
+                    sino un pequeño lugar hecho pensando en ti, en tus gustos
+                    y en esas cosas que consiguen sacarte una sonrisa.
+                </p>
+
+                <p>
+                    Sé cuánto te gusta BTS, así que imaginé un universo
+                    morado donde estuvieran tus siete estrellas favoritas.
+                    Pero quería que, entre todas esas luces, también
+                    encontraras unas palabras mías.
+                </p>
+
+                <p>
+                    Quiero que recuerdes que mereces cosas bonitas,
+                    que tus sueños importan y que incluso en los días
+                    cansados sigues teniendo muchísimas razones para sentirte
+                    orgullosa de ti misma.
+                </p>
+
+                <p>
+                    Si pudiera regalarte una estrella, no elegiría la más
+                    brillante. Elegiría una que te acompañara cuando estés
+                    feliz, cuando tengas dudas y cuando necesites recordar
+                    lo valiosa que eres.
+                </p>
+
+                <p>
+                    Gracias por ser parte de mi vida, princesa.
+                    Esta página no puede guardar todos mis sentimientos,
+                    pero sí puede guardar un pedacito de ellos para que
+                    vuelvas aquí cuando quieras.
+                </p>
+
+                <p class="signature">
+                    Te Amoo, Mi Máhria. 💜<br>
+                    Con cariño, Cesar, tu Zambito 🤎
+                </p>
+            </article>
+        </div>
+    </section>
+
+    <!-- SORPRESA FINAL -->
+    <section>
+        <div class="promise">
+            <div class="eyebrow">Una última sorpresa</div>
+            <h2>Este universo lleva tu nombre.</h2>
+            <p>
+                Las estrellas son muchas, las canciones son infinitas
+                y el universo es enorme. Pero esta pequeña página
+                tiene una sola protagonista: tú, Máhria.
+            </p>
+
+            <button class="btn" onclick="lluviaDeAmor()">
+                Enviar amor a Máhria 💜
+            </button>
+
+            <div id="loveMessage" aria-live="polite"></div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <strong>Para Máhria, con cariño. 💜</strong><br>
+    Creado por Cesar · Tu Zambito 🤎<br>
+    <span>Un pequeño universo que siempre puedes volver a visitar.</span>
+</footer>
+
+<script>
+// ESTRELLAS ANIMADAS
+const stars = document.getElementById("stars");
+
+for (let i = 0; i < 120; i++) {
+    const star = document.createElement("span");
+    star.className = "star";
+
+    const size = Math.random() * 2.5 + 1;
+    star.style.width = size + "px";
+    star.style.height = size + "px";
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
+    star.style.animationDelay = Math.random() * 4 + "s";
+    star.style.animationDuration = (Math.random() * 3 + 2) + "s";
+
+    stars.appendChild(star);
+}
+
+// ABRIR LA PORTADA
+function entrar() {
+    document.getElementById("intro").classList.add("closed");
+}
+
+// NAVEGACIÓN SUAVE
+function irA(id) {
+    document.getElementById(id).scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+// VER FOTOGRAFÍAS EN GRANDE
+function verFoto(nombre, url) {
+    const modal = document.getElementById("photoModal");
+    const img = document.getElementById("modalImage");
+
+    img.src = url;
+    img.alt = "Fotografía de " + nombre + " de BTS";
+
+    document.getElementById("modalName").textContent = nombre;
+    modal.classList.add("visible");
+}
+
+function cerrarFoto() {
+    document.getElementById("photoModal").classList.remove("visible");
+}
+
+document.getElementById("photoModal").addEventListener("click", function(event) {
+    if (event.target === this) cerrarFoto();
+});
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") cerrarFoto();
+});
+
+// ABRIR Y CERRAR LA CARTA
+function abrirCarta() {
+    const carta = document.getElementById("letter");
+    const boton = document.getElementById("letterBtn");
+
+    carta.classList.toggle("open");
+
+    if (carta.classList.contains("open")) {
+        boton.textContent = "Cerrar mi carta 💌";
+        carta.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    } else {
+        boton.textContent = "Abrir mi carta";
+    }
+}
+
+// LLUVIA DE CORAZONES
+function lluviaDeAmor() {
+    const emojis = ["💜", "💗", "💕", "✨", "💖", "🌸", "🦋"];
+
+    for (let i = 0; i < 45; i++) {
+        const heart = document.createElement("span");
+        heart.className = "heart";
+        heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 22 + 15) + "px";
+        heart.style.animationDelay = Math.random() * 2 + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 7500);
+    }
+
+    document.getElementById("loveMessage").textContent =
+        "Para ti, Máhria. Siempre con cariño. 💜";
+}
+</script>
+</body>
+</html>
